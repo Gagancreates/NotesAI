@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Upload,
-  Sparkles,
   BookOpen,
   Menu,
   ChevronRight,
@@ -126,9 +125,6 @@ const ProcessingView = ({ onComplete }: { onComplete: () => void }) => {
                 <div className="relative h-24 w-24 mx-auto">
                     <div className="absolute inset-0 border-4 border-black/5 rounded-full"></div>
                     <div className="absolute inset-0 border-4 border-primary rounded-full border-t-transparent animate-spin"></div>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <Sparkles className="h-8 w-8 text-primary animate-pulse" />
-                    </div>
                 </div>
                 
                 <div className="space-y-2">
@@ -170,9 +166,7 @@ const NoteView = ({ note }: { note: NoteData }) => (
 
             {/* Summary Block */}
             <section className="bg-white/60 p-6 rounded-2xl border border-black/5 shadow-sm backdrop-blur-sm relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <Sparkles className="h-24 w-24" />
-                </div>
+                
                 <div className="flex items-center gap-2 mb-3 text-primary/80 relative z-10">
                     <LayoutTemplate className="h-4 w-4" />
                     <h3 className="text-sm font-bold uppercase tracking-wider">Executive Summary</h3>
