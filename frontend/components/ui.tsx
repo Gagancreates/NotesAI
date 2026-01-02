@@ -1,13 +1,11 @@
 import React from "react";
 
-// --- UI Components (Simulating Shadcn) ---
-
 export const Button = React.forwardRef<
   HTMLButtonElement,
   React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "default" | "outline" | "ghost"; size?: "default" | "sm" | "lg" | "icon" }
 >(({ className = "", variant = "default", size = "default", ...props }, ref) => {
   const baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
-
+  
   const variants = {
     default: "bg-primary text-white hover:bg-primary/90 shadow-sm",
     outline: "border border-primary bg-transparent hover:bg-white hover:text-primary",
@@ -75,11 +73,12 @@ export const CardContent = React.forwardRef<
 ));
 CardContent.displayName = "CardContent";
 
-export const Badge = ({ className = "", variant = "default", ...props }: React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "secondary" | "outline" }) => {
+export const Badge = ({ className = "", variant = "default", ...props }: React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "secondary" | "outline" | "processing" }) => {
   const variants = {
     default: "border-transparent bg-primary text-white hover:bg-primary/80",
     secondary: "border-transparent bg-white text-primary hover:bg-white/80",
     outline: "text-foreground",
+    processing: "border-transparent bg-yellow-100 text-yellow-800",
   };
   return (
     <div className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${variants[variant]} ${className}`} {...props} />

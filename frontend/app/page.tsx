@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { ArrowRight, Upload, Sparkles, BookOpen, FileText, CheckCircle2 } from "lucide-react";
 import { Button, Card, CardHeader, CardTitle, CardContent, Badge } from "@/components/ui";
 
@@ -44,10 +45,12 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center pt-4">
-            <Button size="lg" className="gap-2 h-14 px-8 text-lg rounded-full shadow-lg hover:shadow-xl transition-all">
-              <Upload className="h-5 w-5" />
-              Upload PDF
-            </Button>
+            <Link href="/chat">
+              <Button size="lg" className="gap-2 h-14 px-8 text-lg rounded-full shadow-lg hover:shadow-xl transition-all">
+                <Upload className="h-5 w-5" />
+                Upload PDF
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="gap-2 h-14 px-8 text-lg rounded-full bg-transparent border-black/10 hover:bg-white/50">
               View Example
               <ArrowRight className="h-4 w-4" />
