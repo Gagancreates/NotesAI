@@ -1,6 +1,7 @@
 # route for uploading the pdf
 from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks
 from app.models.schemas import UploadResponse
+from app.services.processing_pipeline import process_pdf_pipeline
 from app.core.database import get_supabase
 from app.core.config import get_settings
 import os
@@ -59,8 +60,14 @@ async def upload_pdf(
         "current_stage": "File uploaded, ready for processing"
     }).execute()
 
+    background_tasks.add_task(
+        process_pdf_pipeline,
+        str(doc_id),
+        str(file_path)
+    )
+
     return UploadResponse(
         doc_id=doc_id,
-        status="uploaded",
-        message="PDF uploaded successfully"
+        status="processing",
+        message="PDF uploaded and processing started"
     )

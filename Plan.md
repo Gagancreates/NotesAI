@@ -411,7 +411,6 @@ async def health_check():
 
 ```bash
 # From backend directory
-uvicorn app.main:app --reload --port 8000
 ```
 
 ### ✅ Phase 1 Test
