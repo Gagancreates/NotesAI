@@ -33,7 +33,7 @@ class PineconeClient:
                     "doc_id": doc_id,
                     "text": chunk["text"][:1000],  # Limit metadata size
                     "page": chunk["page"],
-                    "heading": chunk.get("heading", ""),
+                    "heading": chunk.get("heading") or "",  # ← Convert None to ""
                     "chunk_index": chunk["chunk_index"]
                 }
             }

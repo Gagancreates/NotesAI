@@ -25,3 +25,13 @@ class UploadResponse(BaseModel):
     doc_id: UUID
     status: str
     message: str
+
+class NoteGenerationResponse(BaseModel):
+    doc_id: UUID
+    status: str
+    message: str
+
+class NoteResponse(BaseModel):
+    doc_id: UUID
+    notes: Dict[str, Any]
+    generated_at: datetime

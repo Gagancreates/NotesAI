@@ -62,12 +62,15 @@ async def process_pdf_pipeline(doc_id: str, pdf_path: str):
 
     except Exception as e:
         # Update error status
+        error_msg = str(e)
         supabase.table("documents").update({
             "status": "failed",
-            "error_message": str(e)
+            "error_message": error_msg
         }).eq("id", doc_id).execute()
 
-        update_job_status(doc_id, "failed", 0, f"Error: {str(e)}")
+        # Truncate error for job_status (max 100 chars)
+        short_error = error_msg[:97] + "..." if len(error_msg) > 100 else error_msg
+        update_job_status(doc_id, "failed", 0, f"Error: {short_error}")
 
         raise
 
