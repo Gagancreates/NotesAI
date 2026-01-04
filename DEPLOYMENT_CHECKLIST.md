@@ -4,15 +4,19 @@
 
 - [ ] All code committed to GitHub
 - [ ] `.env` files are in `.gitignore` (never commit secrets!)
-- [ ] Railway account created
+- [ ] Render account created
 - [ ] Vercel account created
 
 ---
 
-## Backend Deployment (Railway)
+## Backend Deployment (Render)
 
-- [ ] Create new Railway project from GitHub repo
-- [ ] Set root directory to `backend`
+- [ ] Create new Web Service on Render
+- [ ] Connect GitHub repository
+- [ ] Configure service settings:
+  - [ ] Root Directory: `backend`
+  - [ ] Build Command: `pip install -r requirements.txt`
+  - [ ] Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 - [ ] Add all environment variables from `backend/.env`:
   - [ ] SUPABASE_URL
   - [ ] SUPABASE_ANON_KEY
@@ -24,9 +28,9 @@
   - [ ] MAX_FILE_SIZE_MB
   - [ ] UPLOAD_DIR
   - [ ] FRONTEND_URL (update after Vercel deployment)
-- [ ] Generate Railway domain
-- [ ] Copy Railway URL: `_______________________________`
-- [ ] Test backend: Visit `https://your-app.railway.app/health`
+- [ ] Deploy and wait for completion
+- [ ] Copy Render URL: `_______________________________`
+- [ ] Test backend: Visit `https://your-app.onrender.com/health`
 
 ---
 
@@ -35,7 +39,7 @@
 - [ ] Import project from GitHub
 - [ ] Set root directory to `frontend`
 - [ ] Add environment variable:
-  - [ ] NEXT_PUBLIC_API_URL = `<your-railway-url>`
+  - [ ] NEXT_PUBLIC_API_URL = `<your-render-url>`
 - [ ] Deploy
 - [ ] Copy Vercel URL: `_______________________________`
 - [ ] Test frontend loads correctly
@@ -44,8 +48,8 @@
 
 ## Post-Deployment
 
-- [ ] Update `FRONTEND_URL` in Railway with Vercel URL
-- [ ] Wait for Railway to redeploy (automatic)
+- [ ] Update `FRONTEND_URL` in Render with Vercel URL
+- [ ] Wait for Render to redeploy (automatic)
 - [ ] Test full workflow:
   - [ ] Upload PDF
   - [ ] Confirm processing
@@ -59,7 +63,7 @@
 ## URLs to Save
 
 ```
-Backend (Railway):  ___________________________________________
+Backend (Render):   ___________________________________________
 Frontend (Vercel):  ___________________________________________
 ```
 
@@ -69,25 +73,32 @@ Frontend (Vercel):  ___________________________________________
 
 **CORS Error:**
 ```
-Solution: Ensure FRONTEND_URL in Railway exactly matches Vercel URL
+Solution: Ensure FRONTEND_URL in Render exactly matches Vercel URL
 Check: No trailing slash in URLs
 ```
 
 **API Not Found (404):**
 ```
 Solution: Verify NEXT_PUBLIC_API_URL in Vercel is correct
-Check: Railway backend is running (check logs)
+Check: Render backend is running (check logs)
+```
+
+**Backend Slow/Not Responding:**
+```
+Render free tier sleeps after 15min inactivity
+First request takes 30-60 seconds to wake up
+Solution: Wait for service to wake, or upgrade to paid tier
 ```
 
 **Upload Fails:**
 ```
-Solution: Check Railway logs for errors
-Verify: All API keys are set in Railway
+Solution: Check Render logs for errors
+Verify: All API keys are set in Render
 ```
 
 **Notes Don't Generate:**
 ```
 Solution: Check ANTHROPIC_API_KEY is valid
 Verify: Pinecone namespace exists
-Check: Railway logs for detailed error
+Check: Render logs for detailed error
 ```

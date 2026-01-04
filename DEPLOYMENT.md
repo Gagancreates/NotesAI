@@ -2,11 +2,11 @@
 
 ## Overview
 - **Frontend**: Next.js (Deployed on Vercel)
-- **Backend**: FastAPI (Deployed on Railway)
+- **Backend**: FastAPI (Deployed on Render)
 
 ---
 
-## Part 1: Deploy Backend to Railway
+## Part 1: Deploy Backend to Render
 
 ### Step 1: Prepare Your Repository
 1. Commit all changes to git:
@@ -16,16 +16,26 @@
    git push origin main
    ```
 
-### Step 2: Create Railway Account & Deploy
-1. Go to [railway.app](https://railway.app) and sign up with GitHub
-2. Click **"New Project"** → **"Deploy from GitHub repo"**
-3. Select your `notes_ai` repository
-4. Railway will auto-detect your backend and start deploying
+### Step 2: Create Render Account & Deploy
+1. Go to [render.com](https://render.com) and sign up with GitHub
+2. Click **"New +"** → **"Web Service"**
+3. Connect your GitHub account and select the `notes_ai` repository
+4. Configure the service:
+   - **Name**: `notesai-backend` (or your preferred name)
+   - **Region**: Choose closest to you
+   - **Branch**: `main`
+   - **Root Directory**: `backend`
+   - **Runtime**: `Python 3`
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - **Instance Type**: Free (or paid if needed)
 
-### Step 3: Configure Environment Variables in Railway
-1. In your Railway project, click on your service
-2. Go to **"Variables"** tab
-3. Add all these environment variables from your `backend/.env` file:
+5. Click **"Advanced"** and set:
+   - **Auto-Deploy**: Yes
+
+### Step 3: Configure Environment Variables in Render
+1. Scroll down to **"Environment Variables"**
+2. Click **"Add Environment Variable"** and add all these from your `backend/.env` file:
    ```
    SUPABASE_URL=<your_supabase_url>
    SUPABASE_ANON_KEY=<your_supabase_anon_key>
@@ -41,18 +51,15 @@
 
    **Note**: You'll update `FRONTEND_URL` after deploying the frontend in Part 2.
 
-### Step 4: Configure Build Settings
-1. In Railway, go to **"Settings"** tab
-2. Ensure these settings:
-   - **Root Directory**: `backend`
-   - **Build Command**: (leave empty, Railway auto-detects)
-   - **Start Command**: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+### Step 4: Deploy
+1. Click **"Create Web Service"**
+2. Render will start building and deploying your backend
+3. Wait for the deployment to complete (this may take 5-10 minutes)
 
 ### Step 5: Get Your Backend URL
-1. Go to **"Settings"** → **"Networking"**
-2. Click **"Generate Domain"**
-3. Copy the generated URL (e.g., `https://your-app.up.railway.app`)
-4. **Save this URL** - you'll need it for frontend deployment
+1. Once deployed, you'll see your service URL at the top (e.g., `https://notesai-backend.onrender.com`)
+2. **Save this URL** - you'll need it for frontend deployment
+3. Test your backend: Visit `https://your-app.onrender.com/health`
 
 ---
 
@@ -74,9 +81,9 @@
 2. Add this variable:
    ```
    Name: NEXT_PUBLIC_API_URL
-   Value: <your-railway-backend-url>
+   Value: <your-render-backend-url>
    ```
-   (Use the Railway URL from Part 1, Step 5)
+   (Use the Render URL from Part 1, Step 5)
 
 ### Step 4: Deploy
 1. Click **"Deploy"**
@@ -87,14 +94,15 @@
 
 ## Part 3: Update Backend CORS Settings
 
-### Step 1: Update Railway Environment Variable
-1. Go back to your Railway project
-2. Go to **"Variables"** tab
-3. Update the `FRONTEND_URL` variable:
+### Step 1: Update Render Environment Variable
+1. Go back to your Render dashboard
+2. Select your backend service
+3. Go to **"Environment"** tab
+4. Update the `FRONTEND_URL` variable:
    ```
    FRONTEND_URL=https://your-vercel-app.vercel.app
    ```
-4. Railway will automatically redeploy
+5. Render will automatically redeploy
 
 ---
 
@@ -108,16 +116,21 @@
 ### Troubleshooting
 
 **CORS Errors:**
-- Ensure `FRONTEND_URL` in Railway matches your Vercel URL exactly
-- Check Railway logs for errors
+- Ensure `FRONTEND_URL` in Render matches your Vercel URL exactly
+- Check Render logs for errors
 
 **API Connection Errors:**
-- Verify `NEXT_PUBLIC_API_URL` in Vercel points to your Railway backend
-- Test backend health: `https://your-railway-app.up.railway.app/health`
+- Verify `NEXT_PUBLIC_API_URL` in Vercel points to your Render backend
+- Test backend health: `https://your-app.onrender.com/health`
+
+**Backend Slow to Respond:**
+- Render free tier sleeps after 15 minutes of inactivity
+- First request takes 30-60 seconds to wake up the service
+- Consider using a free uptime monitoring service to keep it awake
 
 **Upload Issues:**
-- Check Railway logs for file size limits
-- Verify all API keys are set correctly in Railway
+- Check Render logs for file size limits
+- Verify all API keys are set correctly in Render
 
 ---
 
@@ -136,7 +149,7 @@ npm run dev
 ```
 
 ### Viewing Logs
-- **Railway**: Click on your service → "Deployments" → Select deployment → View logs
+- **Render**: Dashboard → Select your service → "Logs" tab
 - **Vercel**: Project → "Deployments" → Select deployment → View logs
 
 ---
@@ -144,8 +157,11 @@ npm run dev
 ## Important Notes
 
 1. **Never commit `.env` files** - they're in `.gitignore`
-2. **API Keys**: Keep your API keys secure in Railway/Vercel environment variables
-3. **Railway Costs**: Monitor usage on the Railway dashboard
+2. **API Keys**: Keep your API keys secure in Render/Vercel environment variables
+3. **Render Free Tier**:
+   - 750 hours/month free
+   - Services sleep after 15 min inactivity
+   - Cold starts take 30-60 seconds
 4. **Vercel Limits**: Free tier has bandwidth and execution limits
 5. **Database**: Supabase and Pinecone are already cloud-hosted, no changes needed
 
@@ -159,8 +175,9 @@ npm run dev
 
 2. Monitor application health
    - Set up error tracking (Sentry, LogRocket)
-   - Monitor Railway logs for backend errors
+   - Monitor Render logs for backend errors
    - Monitor Vercel logs for frontend errors
+   - Set up uptime monitoring (UptimeRobot) to prevent free tier sleep
 
 3. Optimize for production
    - Enable Next.js Image Optimization
