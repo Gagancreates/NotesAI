@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Notedly - Aesthetic AI Notes",
+  title: "NotesAI - Aesthetic AI Notes",
   description: "Turn chaotic slides into aesthetic notes. Upload your slides and let our AI craft beautifully structured, exam-ready study guides in seconds.",
 };
 
