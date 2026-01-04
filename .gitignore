@@ -22,6 +22,9 @@ frontend/node_modules/
 #test-files
 test_files/
 
+# Resume (personal)
+RESUME.md
+
 # next.js
 /.next/
 /out/
