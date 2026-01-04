@@ -24,6 +24,8 @@ test_files/
 
 # Resume (personal)
 RESUME.md
+DEPLOYMENT.md
+DEPLOYMENT_CHECKLIST.md
 
 # next.js
 /.next/
