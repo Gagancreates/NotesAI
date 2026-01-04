@@ -1,12 +1,20 @@
-from fastapi import FastAPI 
+import os
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import upload, status, notes
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(title="NoteAI API", version="1.0.0", description="PDF to Aesthetic Notes")
 
+# Get allowed origins from environment variable
+frontend_url = os.getenv("FRONTEND_URL", "http://localhost:3000")
+allowed_origins = [frontend_url, "http://localhost:3000"]  # Always allow localhost for development
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Next.js dev server
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
