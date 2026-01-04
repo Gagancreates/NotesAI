@@ -4,7 +4,6 @@ import {
   Upload,
   BookOpen,
   Menu,
-  ChevronRight,
   CheckCircle,
   LayoutTemplate,
   List,
@@ -349,8 +348,8 @@ const Dashboard = () => {
             setViewState('processing');
             setProgress(0);
             setStage('Uploading PDF...');
-        } catch (err: any) {
-            setError(err.message || 'Upload failed');
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : 'Upload failed');
             setViewState('error');
         } finally {
             setIsUploading(false);
@@ -366,8 +365,8 @@ const Dashboard = () => {
             setViewState('generating');
             setProgress(0);
             setStage('Starting note generation...');
-        } catch (err: any) {
-            setError(err.message || 'Failed to start note generation');
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : 'Failed to start note generation');
             setViewState('error');
         } finally {
             setIsGenerating(false);

@@ -27,7 +27,7 @@ const SidebarItem = ({
     active,
     variant = "default"
 }: {
-    icon: any,
+    icon: React.ComponentType<{ className?: string }>,
     label: string,
     onClick?: () => void,
     collapsed?: boolean,
@@ -73,7 +73,6 @@ const Sidebar = ({
     closeMobile,
     onNew,
     viewState,
-    noteTitle
 }: SidebarProps) => {
     const sidebarContent = (
         <div className="flex flex-col h-full bg-white/40 backdrop-blur-md">
