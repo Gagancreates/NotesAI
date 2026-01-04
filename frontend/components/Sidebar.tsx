@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "./ui";
 
-type ViewState = 'upload' | 'processing' | 'view';
+type ViewState = 'upload' | 'processing' | 'ready' | 'generating' | 'view' | 'error';
 
 const SidebarItem = ({
     icon: Icon,
