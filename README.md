@@ -1,6 +1,7 @@
 # NotesAI
 
 An AI-powered study guide generator that transforms lecture PDFs into beautifully formatted, comprehensive study notes.
+![alt text](image.png)
 
 ## Overview
 
