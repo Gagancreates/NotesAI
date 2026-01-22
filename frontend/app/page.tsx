@@ -10,7 +10,7 @@ import { Button, Card, CardHeader, CardTitle, CardContent, Badge } from "@/compo
 
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-black/5 bg-[#ffeee7]/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-black/5 bg-[#c7c863]/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
         <div className="flex items-center gap-2">
           <BookOpen className="h-6 w-6 text-primary" />
@@ -96,7 +96,7 @@ const HowItWorks = () => {
             <div key={index} className="relative group">
               <Card className="h-full border-black/5 bg-white/40 hover:bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-full bg-[#ffeee7] border border-black/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <div className="w-12 h-12 rounded-full bg-[#c7c863] border border-black/5 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                     {step.icon}
                   </div>
                   <CardTitle>{step.title}</CardTitle>
@@ -147,7 +147,7 @@ const Features = () => {
                 </div>
 
                 <div className="flex-1 relative">
-                    <div className="absolute inset-0 bg-gradient-to-tr from-[#ffeee7] to-white rounded-2xl transform rotate-3 scale-95 opacity-50 blur-lg"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tr from-[#c7c863] to-white rounded-2xl transform rotate-3 scale-95 opacity-50 blur-lg"></div>
                     <Card className="relative bg-white border-black/5 shadow-xl overflow-hidden transform transition-transform hover:scale-[1.02]">
                         <div className="h-8 bg-gray-50 border-b border-gray-100 flex items-center px-4 gap-2">
                             <div className="w-3 h-3 rounded-full bg-red-400/50"></div>

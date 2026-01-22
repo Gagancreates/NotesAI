@@ -390,7 +390,7 @@ const Dashboard = () => {
     };
 
     return (
-        <div className="flex h-screen overflow-hidden bg-[#ffeee7]">
+        <div className="flex h-screen overflow-hidden bg-[#c7c863]">
             <Sidebar
                 isOpen={isMobileSidebarOpen}
                 isCollapsed={isDesktopCollapsed}
@@ -401,9 +401,9 @@ const Dashboard = () => {
                 noteTitle={notes?.notes.title}
             />
 
-            <main className="flex-1 flex flex-col relative bg-[#ffeee7] md:bg-transparent min-w-0">
+            <main className="flex-1 flex flex-col relative bg-[#c7c863] md:bg-transparent min-w-0">
                 {/* Mobile Header Trigger */}
-                <div className="md:hidden flex items-center justify-between p-4 border-b border-black/5 bg-[#ffeee7]/80 backdrop-blur-md sticky top-0 z-10">
+                <div className="md:hidden flex items-center justify-between p-4 border-b border-black/5 bg-[#c7c863]/80 backdrop-blur-md sticky top-0 z-10">
                     <div className="flex items-center gap-2">
                         <BookOpen className="h-5 w-5 text-primary" />
                         <span className="font-serif font-bold text-lg">NotesAI</span>
